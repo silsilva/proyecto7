@@ -37,7 +37,7 @@ const state = {
   },
 
   async authUser(email) {
-    const res = await fetch(API_BASE_URL + "/check", {
+    const res = await fetch("/check", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -53,7 +53,7 @@ const state = {
   async signUp(userData) {
     const currentState = this.getState();
 
-    const res = await fetch(API_BASE_URL + "/auth", {
+    const res = await fetch("/auth", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const state = {
   async signIn(password) {
     const currentState = this.getState();
 
-    const res = await fetch(API_BASE_URL + "/auth/token", {
+    const res = await fetch("/auth/token", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -95,7 +95,7 @@ const state = {
 
   async myInfo() {
     const currentState = state.getState();
-    const res = await fetch(API_BASE_URL + "/me", {
+    const res = await fetch("/me", {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${currentState.authtoken}`,
@@ -112,11 +112,7 @@ const state = {
     console.log(coordinates, "AVERGAAAA");
 
     const res = await fetch(
-      API_BASE_URL +
-        "/pets-around?lat=" +
-        coordinates.lat +
-        "&lng=" +
-        coordinates.lng,
+      `/pets-around?lat=` + coordinates.lat + `&lng=` + coordinates.lng,
       {
         headers: {
           "content-type": "application/json",
@@ -149,7 +145,7 @@ const state = {
   async createPet(petData) {
     const currentState = this.getState();
 
-    const res = await fetch(API_BASE_URL + "/pets", {
+    const res = await fetch("/pets", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -166,7 +162,7 @@ const state = {
   async getPetData(petId) {
     const currentState = this.getState();
 
-    const res = await fetch(API_BASE_URL + "/pets/" + petId, {
+    const res = await fetch("/pets/" + petId, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${currentState.authtoken.token}`,
@@ -190,7 +186,7 @@ const state = {
   //OBTIENE LOS DATOS DE LA MASCOTAS
   async getMyPets() {
     const currentState = this.getState();
-    const res = await fetch(API_BASE_URL + "/me/pets/", {
+    const res = await fetch("/me/pets/", {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${currentState.authtoken.token}`,
@@ -209,7 +205,7 @@ const state = {
   //EDITA UNA MASCOTA
   async editPet(params) {
     const currentState = this.getState();
-    const res = await fetch(API_BASE_URL + `/pets/${currentState.petData.id}`, {
+    const res = await fetch(`/pets/${currentState.petData.id}`, {
       method: "put",
       headers: {
         "content-type": "application/json",
@@ -223,7 +219,7 @@ const state = {
 
   async deletePet(petID: number) {
     const currentState = this.getState();
-    const res = await fetch(API_BASE_URL + "/pets/" + petID, {
+    const res = await fetch("/pets/" + petID, {
       method: "delete",
       headers: {
         "content-type": "application/json",
@@ -237,7 +233,7 @@ const state = {
 
   async editMyInfo(params) {
     const currentState = this.getState();
-    const res = await fetch(API_BASE_URL + "/me", {
+    const res = await fetch("/me", {
       method: "put",
       headers: {
         "content-type": "application/json",
